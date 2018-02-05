@@ -4,7 +4,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import { duplicateArray, shuffleArray, splitArrayInHalf } from "./src/helpers/arrayHelpers";
 
 import Header from "./src/components/Header/Header";
-import GameStatus from "./src/components/GameStatus/GameStatus";
 import GameLayout from "./src/components/GameLayout/GameLayout";
 
 export default class App extends Component {
@@ -51,7 +50,6 @@ export default class App extends Component {
     return (
       <View style={styles.game}>
         <Header />
-        <GameStatus />
         <GameLayout 
           playing={this.state.playing}
           onStartGame={this.handleStartGame}

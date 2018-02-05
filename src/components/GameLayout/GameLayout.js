@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 
 import MemoryCards from "./MemoryCards/MemoryCards";
+import GameStatus from "./GameStatus/GameStatus";
 
 export default class GameLayout extends Component {
   render() {
@@ -9,13 +10,20 @@ export default class GameLayout extends Component {
       return <MemoryCards pokemonList={row} key={i} /> 
     })
 
+    const game = (
+      <View>
+        <GameStatus />
+        {rows}
+      </View>
+    )
+
     return (
-      <View style={styles.gameLayout}>
+      <ScrollView contentContainerStyle={styles.gameLayout}>
         {this.props.playing 
-            ? rows
+            ? game
             : <Button onPress={this.props.onStartGame} title="Start Game"/>
         }
-      </View>           
+      </ScrollView>           
     );
   }
 }
@@ -24,9 +32,5 @@ const styles = StyleSheet.create({
   gameLayout: {
     justifyContent: 'center',
     flexDirection: 'column',
-    paddingTop: 8
-  },
-  text: {
-    fontSize: 24
   }
 });
