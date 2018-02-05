@@ -9,6 +9,8 @@ import GameLayout from "./src/components/GameLayout/GameLayout";
 export default class App extends Component {
   state = {
     playing: false,
+    turnNumber: 1,
+    pairsFound: 0,
     pokemonList: [
       {
         name: "bulbasaur",
@@ -52,6 +54,8 @@ export default class App extends Component {
         <Header />
         <GameLayout 
           playing={this.state.playing}
+          turnNumber={this.state.turnNumber}
+          pairsFound={this.state.pairsFound}
           onStartGame={this.handleStartGame}
           pokemonList={this.prepareCards(this.state.pokemonList)}
         />

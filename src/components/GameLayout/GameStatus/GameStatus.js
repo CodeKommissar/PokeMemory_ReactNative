@@ -5,8 +5,8 @@ export default class GameStatus extends Component {
   render() {
     return (
       <View style={styles.gameStatus}>
-        <Text style={styles.text}>Turn: 1</Text>
-        <Text style={styles.text}>Pairs Found: 0</Text>
+        <Text style={styles.text}>Turn: {this.props.turnNumber}</Text>
+        <Text style={styles.text}>Pairs Found: {this.props.pairsFound}</Text>
       </View>
     );
   }
