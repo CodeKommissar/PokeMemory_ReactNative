@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
+import { StyleSheet, View, Button, ScrollView } from 'react-native';
 
-import MemoryCards from "./MemoryCards/MemoryCards";
+import CardsRow from "./CardsRow/CardsRow";
 import GameStatus from "./GameStatus/GameStatus";
 
 export default class GameLayout extends Component {
   render() {
-    const rows = this.props.pokemonList.map((row, i) => {
-      return <MemoryCards pokemonList={row} key={i} /> 
+    const cardsRow = this.props.pokemonList.map((row, i) => {
+      return <CardsRow pokemonList={row} key={i} /> 
     })
 
-    const game = (
+    const gameLayout = (
       <View>
         <GameStatus />
-        {rows}
+        {cardsRow}
       </View>
     )
 
     return (
       <ScrollView contentContainerStyle={styles.gameLayout}>
         {this.props.playing 
-            ? game
+            ? gameLayout
             : <Button onPress={this.props.onStartGame} title="Start Game"/>
         }
       </ScrollView>           

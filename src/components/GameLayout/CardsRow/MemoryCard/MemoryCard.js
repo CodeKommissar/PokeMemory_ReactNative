@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-    marginTop: -8
+    marginTop: -8,
+    opacity: 0
   }
 });

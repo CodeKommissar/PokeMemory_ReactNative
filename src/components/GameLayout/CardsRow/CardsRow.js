@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 import MemoryCard from "./MemoryCard/MemoryCard";
 
-export default class MemoryCards extends Component {
+export default class CardsRow extends Component {
   render() {
     return (
       <View style={styles.cards}>

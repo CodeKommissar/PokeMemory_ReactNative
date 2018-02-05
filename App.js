@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { duplicateArray, shuffleArray, splitArrayInHalf } from "./src/helpers/arrayHelpers";
 
@@ -48,7 +48,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <View style={styles.game}>
+      <View>
         <Header />
         <GameLayout 
           playing={this.state.playing}
@@ -59,9 +59,3 @@ export default class App extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  game: {
-    backgroundColor: "white"
-  }
-});
