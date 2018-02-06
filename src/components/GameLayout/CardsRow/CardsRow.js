@@ -3,16 +3,18 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 import MemoryCard from "./MemoryCard/MemoryCard";
 
-export default class CardsRow extends Component {
-  render() {
+export default CardsRow = (props) => {
     return (
       <View style={styles.cards}>
-        {this.props.pokemonList.map(pokemon => {
-          return <MemoryCard pokemon={pokemon} key={pokemon.id} />
+        {props.pokemonList.map(pokemon => {
+          return <MemoryCard 
+            pokemon={pokemon} 
+            key={pokemon.id}
+            onFlipCard={props.onFlipCard} 
+          />
         })}
       </View>           
     );
-  }
 }
 
 const styles = StyleSheet.create({

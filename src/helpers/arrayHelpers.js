@@ -1,5 +1,16 @@
+export const addPropertiesToArray = array => {
+    const arrayCopy = JSON.parse(JSON.stringify(array))
+    return arrayWithProperties = arrayCopy.map((item, index) => {
+        return Object.assign(item, {
+            imageUp: false,
+            matched: false,
+            id: "id_" + index
+        })
+    })
+}
+
 export const duplicateArray = (array) => {
-    return [...array, ...array];
+    return array.concat(array);
 }
 
 export const shuffleArray = (array) => {
@@ -12,6 +23,6 @@ export const shuffleArray = (array) => {
 
 export const splitArrayInHalf = (array) => {
     const firstHalf = array.slice(0, 5);
-    const secondHalf = array.slice(5, 10)
+    const secondHalf = array.slice(5, 10);
     return [[...firstHalf], [...secondHalf]];
 }
