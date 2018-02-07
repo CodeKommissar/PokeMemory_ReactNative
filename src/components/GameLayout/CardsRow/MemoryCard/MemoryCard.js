@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 export default class MemoryCard extends Component {
-  capitalizeFirstLetter = string => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  formatPokemonName = string => {
+    return (string.charAt(0).toUpperCase() + string.slice(1)).split("-")[0];
   }
 
   render() {
     return (
       <View>
         <TouchableOpacity 
-          onPress={() => this.props.onFlipCard(this.props.pokemon.id)} 
+          onPress={this.props.pokemon.imageUp ? null : () => this.props.onFlipCard(this.props.pokemon)} 
           style={styles.card}
         >
           {this.props.pokemon.imageUp ? (
@@ -26,8 +26,8 @@ export default class MemoryCard extends Component {
               style={styles.sprite}
             />
           )}
-          <Text style={styles.text}>
-            {this.capitalizeFirstLetter(this.props.pokemon.name)}
+          <Text style={this.props.pokemon.matched ? styles.displayText : styles.hideText}>
+            {this.formatPokemonName(this.props.pokemon.name)}
           </Text>
         </TouchableOpacity>
       </View>
@@ -45,7 +45,12 @@ const styles = StyleSheet.create({
       marginLeft: 8,
       marginRight: 8,
   },
-  text: {
+  displayText: {
+    fontSize: 24,
+    marginTop: -8,
+    opacity: 1
+  },
+  hideText: {
     fontSize: 24,
     marginTop: -8,
     opacity: 0
