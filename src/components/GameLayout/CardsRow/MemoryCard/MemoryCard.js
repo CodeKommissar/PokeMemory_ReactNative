@@ -10,8 +10,9 @@ export default class MemoryCard extends Component {
     return (
       <View>
         <TouchableOpacity 
-          onPress={this.props.pokemon.imageUp ? null : () => this.props.onFlipCard(this.props.pokemon)} 
+          onPress={() => this.props.onFlipCard(this.props.pokemon)} 
           style={styles.card}
+          disabled={this.props.pokemon.imageUp || this.props.pokemon.matched}
         >
           {this.props.pokemon.imageUp || this.props.pokemon.matched ? (
             <Image 

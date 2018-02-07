@@ -42,6 +42,18 @@ export default class App extends Component {
     }
   }
 
+  handleNewGame = () => {
+    this.setState({
+      playing: false,
+      turnNumber: 1,
+      pairsFound: 0,
+      numClicksWithinTurn: 0,
+      pokemonList: [],
+      firstPokemonSelected: "",
+      secondPokemonSelected: "",
+    })
+  }
+
   selectFivePokemon = (array) => {
     const randomNumber = Math.floor(Math.random() * (array.length - 5))
     return array.slice(randomNumber, (randomNumber + 5));
@@ -69,6 +81,8 @@ export default class App extends Component {
         if (prevState.firstPokemonSelected === pokemonCard.name) {
           return {
             numClicksWithinTurn: 0,
+            turnNumber: prevState.turnNumber + 1,
+            pairsFound: prevState.pairsFound + 1,
             pokemonList: prevState.pokemonList.map(pokemon => {
               if (pokemon.name === pokemonCard.name) {
                 return { ...pokemon, imageUp: true, matched: true }
@@ -80,6 +94,7 @@ export default class App extends Component {
         } else {
           return {
             numClicksWithinTurn: 0,
+            turnNumber: prevState.turnNumber + 1,
             pokemonList: prevState.pokemonList.map(pokemon => {
               if (pokemonCard.id === pokemon.id) {
                 return { ...pokemon, imageUp: true }
@@ -89,31 +104,7 @@ export default class App extends Component {
             })
           }
         }
-      } //else if (prevState.numClicksWithinTurn === 2) {
-      //   if (prevState.firstPokemonSelected === prevState.secondPokemonSelected) {
-      //     return {
-      //       numClicksWithinTurn: 0,
-      //       pokemonList: prevState.pokemonList.map(pokemon => {
-      //         if (pokemon.name === prevState.firstPokemonSelected) {
-      //           return { ...pokemon, matched: true }
-      //         } else {
-      //           return pokemon;
-      //         }
-      //       })
-      //     }
-      //   } else {
-      //     return {
-      //       numClicksWithinTurn: 0,
-      //       pokemonList: prevState.pokemonList.map(pokemon => {
-      //         if (pokemon.matched === false && pokemon.imageUp === true) {
-      //           return { ...pokemon, imageUp: false }
-      //         } else {
-      //           return pokemon;
-      //         }
-      //       })
-      //     }
-      //   }
-      // }
+      }
     })
   }
 
@@ -129,6 +120,7 @@ export default class App extends Component {
           onStartGame={this.handleStartGame}
           pokemonList={this.state.pokemonList}
           onFlipCard={this.handleFlipCard}
+          onNewGame={this.handleNewGame}
         />
       </View>
     );

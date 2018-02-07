@@ -8,7 +8,7 @@ import GameStatus from "./GameStatus/GameStatus";
 
 export default class GameLayout extends Component {
   render() {
-    const { pokemonList, turnNumber, pairsFound, playing, onStartGame } = this.props;
+    const { pokemonList, turnNumber, pairsFound, playing, onStartGame, onNewGame } = this.props;
 
     const pokemonListHalf = splitArrayInHalf(pokemonList);
 
@@ -18,7 +18,7 @@ export default class GameLayout extends Component {
 
     const gameLayout = (
       <View>
-        <GameStatus turnNumber={turnNumber} pairsFound={pairsFound} />
+        <GameStatus turnNumber={turnNumber} pairsFound={pairsFound} onNewGame={onNewGame} />
         {cardsRow}
       </View>
     )
