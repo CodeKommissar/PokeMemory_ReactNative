@@ -55,53 +55,65 @@ export default class App extends Component {
     this.setState((prevState) => {
       if (prevState.numClicksWithinTurn === 0) {
         return {
-          numClicksWithinTurn: prevState.numClicksWithinTurn + 1,
+          numClicksWithinTurn: 1,
           firstPokemonSelected: pokemonCard.name,
           pokemonList: prevState.pokemonList.map(pokemon => {
             if (pokemonCard.id === pokemon.id) {
               return { ...pokemon, imageUp: true }
             } else {
-              return pokemon;
+              return { ...pokemon, imageUp: false }
             }
           })
         }
       } else if (prevState.numClicksWithinTurn === 1) {
-        return {
-          numClicksWithinTurn: prevState.numClicksWithinTurn + 1,
-          secondPokemonSelected: pokemonCard.name,
-          pokemonList: prevState.pokemonList.map(pokemon => {
-            if (pokemonCard.id === pokemon.id) {
-              return { ...pokemon, imageUp: true }
-            } else {
-              return pokemon;
-            }
-          })
-        }
-      } else if (prevState.numClicksWithinTurn === 2) {
-        if (prevState.firstPokemonSelected === prevState.secondPokemonSelected) {
-        return {
-          numClicksWithinTurn: 0,
-          pokemonList: prevState.pokemonList.map(pokemon => {
-            if (pokemon.name === prevState.firstPokemonSelected) {
-              return { ...pokemon, matched: true }
-            } else {
-              return pokemon;
-            }
-          })
-        }
-      } else {
-        return {
-          numClicksWithinTurn: 0,
-          pokemonList: prevState.pokemonList.map(pokemon => {
-              if (pokemon.matched === false && pokemon.imageUp === true) {
-                return { ...pokemon, imageUp: false }
+        if (prevState.firstPokemonSelected === pokemonCard.name) {
+          return {
+            numClicksWithinTurn: 0,
+            pokemonList: prevState.pokemonList.map(pokemon => {
+              if (pokemon.name === pokemonCard.name) {
+                return { ...pokemon, imageUp: true, matched: true }
+              } else {
+                return pokemon;
+              }
+            })
+          }
+        } else {
+          return {
+            numClicksWithinTurn: 0,
+            pokemonList: prevState.pokemonList.map(pokemon => {
+              if (pokemonCard.id === pokemon.id) {
+                return { ...pokemon, imageUp: true }
               } else {
                 return pokemon;
               }
             })
           }
         }
-      }
+      } //else if (prevState.numClicksWithinTurn === 2) {
+      //   if (prevState.firstPokemonSelected === prevState.secondPokemonSelected) {
+      //     return {
+      //       numClicksWithinTurn: 0,
+      //       pokemonList: prevState.pokemonList.map(pokemon => {
+      //         if (pokemon.name === prevState.firstPokemonSelected) {
+      //           return { ...pokemon, matched: true }
+      //         } else {
+      //           return pokemon;
+      //         }
+      //       })
+      //     }
+      //   } else {
+      //     return {
+      //       numClicksWithinTurn: 0,
+      //       pokemonList: prevState.pokemonList.map(pokemon => {
+      //         if (pokemon.matched === false && pokemon.imageUp === true) {
+      //           return { ...pokemon, imageUp: false }
+      //         } else {
+      //           return pokemon;
+      //         }
+      //       })
+      //     }
+      //   }
+      // }
     })
   }
 

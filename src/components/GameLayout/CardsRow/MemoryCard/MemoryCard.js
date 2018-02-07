@@ -13,7 +13,7 @@ export default class MemoryCard extends Component {
           onPress={this.props.pokemon.imageUp ? null : () => this.props.onFlipCard(this.props.pokemon)} 
           style={styles.card}
         >
-          {this.props.pokemon.imageUp ? (
+          {this.props.pokemon.imageUp || this.props.pokemon.matched ? (
             <Image 
               source={
                 {uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.props.pokemon.url.split("/")[6]}.png`}
